@@ -53,20 +53,20 @@ For example, to create an address using the `utxoPubKey` and `stakeKey` in the f
 // base address with staking key
 const baseAddr = CardanoWasm.BaseAddress.new(
   CardanoWasm.NetworkInfo.mainnet().network_id(),
-  CardanoWasm.StakeCredential.from_keyhash(utxoPubKey.to_raw_key().hash()),
-  CardanoWasm.StakeCredential.from_keyhash(stakeKey.to_raw_key().hash()),
+  CardanoWasm.Credential.from_keyhash(utxoPubKey.to_raw_key().hash()),
+  CardanoWasm.Credential.from_keyhash(stakeKey.to_raw_key().hash()),
 );
 
 // enterprise address without staking ability, for use by exchanges/etc
 const enterpriseAddr = CardanoWasm.EnterpriseAddress.new(
   CardanoWasm.NetworkInfo.mainnet().network_id(),
-  CardanoWasm.StakeCredential.from_keyhash(utxoPubKey.to_raw_key().hash())
+  CardanoWasm.Credential.from_keyhash(utxoPubKey.to_raw_key().hash())
 );
 
 // pointer address - similar to Base address but can be shorter, see formal spec for explanation
 const ptrAddr = CardanoWasm.PointerAddress.new(
   CardanoWasm.NetworkInfo.mainnet().network_id(),
-  CardanoWasm.StakeCredential.from_keyhash(utxoPubKey.to_raw_key().hash()),
+  CardanoWasm.Credential.from_keyhash(utxoPubKey.to_raw_key().hash()),
   CardanoWasm.Pointer.new(
     100, // slot
     2,   // tx index in slot
@@ -77,7 +77,7 @@ const ptrAddr = CardanoWasm.PointerAddress.new(
 // reward address - used for withdrawing accumulated staking rewards
 const rewardAddr = CardanoWasm.RewardAddress.new(
   CardanoWasm.NetworkInfo.mainnet().network_id(),
-  CardanoWasm.StakeCredential.from_keyhash(stakeKey.to_raw_key().hash())
+  CardanoWasm.Credential.from_keyhash(stakeKey.to_raw_key().hash())
 );
 
 // bootstrap address - byron-era addresses with no staking rights
